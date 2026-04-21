@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Client Build",
+      "command": "gulp",
+      "args": ["build"],
+      "options": {
+        "cwd": "${workspaceFolder}/client"
+      }
+    },
+    {
+      "label": "Server Build",
+      "command": "gulp",
+      "args": ["build"],
+      "options": {
+        "cwd": "${workspaceFolder}/server",
+        "args": [
+                    "-p",
+                    "-a"
+                ]
+      }
+    },
+    {
+      "label": "Build",
+      "dependsOn": ["Client Build", "Server Build"]
+    }
+  ]
+}
+
