@@ -24,9 +24,11 @@ struct Task {
 
 class TaskManager {
 public:
-    bool load_tasks_from_file(const std::string& file_path);
+    bool load_tasks_from_file(const std::string& workspace_path, const std::string& file_path);
     const Task* get_task_by_label(const std::string& label) const;
     void resolveDependencies();
+
+    std::vector<const Task*> topologically_sorted_tasks(const Task* root) const;
 private:
     std::vector<Task> tasks_;
 };

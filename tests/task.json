@@ -18,12 +18,29 @@
         "args": [
                     "-p",
                     "-a"
-                ]
+                ],
+        "env": {
+            "NODE_ENV": "production",
+            "BUILD_NUMBER": "1234"
+        }
       }
     },
     {
       "label": "Build",
       "dependsOn": ["Client Build", "Server Build"]
+    },
+    {
+      "label": "Test",
+      "type": "shell",
+      "command": "echo",
+      "args": ["-e", "Running tests... $TEMP_VAR"],
+      "options": {
+        "cwd": "${workspaceFolder}/server",
+        "env": {
+            "TEMP_VAR": "test_env"
+        },
+        "args": ["-e", "Running tests... $TEMP_VAR ${env:USERNAME}", "at $(pwd). ", "Test completed!"]
+      }
     }
   ]
 }

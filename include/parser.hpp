@@ -3,11 +3,11 @@
 #include <nlohmann/json.hpp>
 #include <fstream>
 #include <spdlog/spdlog.h>
+#include "tasks.hpp"
 
 class TaskParser {
 public:
-    void load_vscode_json(const std::string& file_path);
-    void load_tasks(const std::string& file_path);
+    std::vector<Task> load_vscode_json(const std::string& file_path);    
 private:
     std::string m_file_path;    
 };

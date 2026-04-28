@@ -1,0 +1,106 @@
+// sample tasks.json file. make sure to add it to your .vscode folder in your project
+{
+    "version": "2.0.0",
+    "tasks": [
+     // this object represents a single task used to serve the app locally
+     {
+      "type": "npm",
+      // this references the "start" script in the sample package.json file above
+      "script": "start",
+      // this specifies the path of your package.json file which contains the script
+      "path": "src",
+      // just a simple label for this task
+      "label": "Start app locally",
+      // additional description for this task. It doesn't have to be the content of the script
+      "detail": "webpack serve"
+     },
+     {
+      // this task is for building the app bundle
+      "type": "npm",
+      "script": "build",
+      "path": "src",
+      "label": "Build the app",
+      "detail": "webpack --mode=production"
+     },
+     {
+      // this task is for running the unit test via Jest
+      "type": "npm",
+      "script": "test",
+      "path": "src",
+      // this attribute is used to group relevant tasks together
+      "group": {
+                 "kind": "test",
+                 // make this task a default task within this "test" group
+                 "isDefault": true
+               },
+      "label": "Run unit test",
+      "detail": "Run unit test using jest"
+     },
+     {
+      // this task is for running playwright end to end test
+      "type": "npm",
+      "script": "e2e",
+      "path": "src",
+      "problemMatcher": [],
+      "label": "Run e2e test",
+      "detail": "npx playwright install && npx playwright test --config=playwright.config.ts --trace on",
+      "group": {
+       "kind": "test",
+      },
+      // use this to inject certain Node JS environment variables to be used by your test
+      "options": {
+       "env": {
+        "TESTCLOUD": "prod"
+       }
+      }
+     },
+     {
+      // this task is for running playwright end to end test in ui mode
+      "type": "npm",
+      "script": "e2e:uiMode",
+      "path": "src",
+      "label": "Run e2e test in UI mode",
+      "detail": "yarn e2e --ui",
+      "group": {
+        "kind": "test",
+      },
+      "options": {
+       "env": {
+        "TESTCLOUD": "prod"
+       }
+      }
+     },
+     {
+      // this task is for running playwright codegen
+      "type": "npm",
+      "script": "codegen",
+      "path": "src",
+      "label": "Open Playwright codegen",
+      "detail": "npx playwright codegen appName.com",
+     },
+     {
+       // Besides referencing npm script, you can also run any shell scripts
+       // For example, this task can be used to open a hosts file for editing
+       "label": "Update host file",
+       "type": "shell",
+       "command": "cd /c/Windows/System32/drivers/etc/ && pwd && vim hosts",
+     },
+     {
+       // this task is used to flush dns using a command prompt
+       "label": "Flush DNS",
+       "type": "shell",
+       "command": "ipconfig /flushdns",
+       "presentation": {
+           "reveal": "always"
+       },
+       "windows": {
+           "options": {
+               "shell": {
+                   "executable": "cmd.exe",
+                   "args": ["/d", "/c"]
+               }
+           }
+       }
+     }
+    ]
+   }

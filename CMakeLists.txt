@@ -26,5 +26,10 @@ add_executable(vscode-task-runner ${SOURCES})
 
 target_link_libraries(vscode-task-runner PRIVATE spdlog::spdlog argparse nlohmann_json::nlohmann_json)
 target_include_directories(vscode-task-runner PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_compile_options(vscode-task-runner PRIVATE -g -Wall -Wextra)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
+
+enable_testing()
+
+add_test(NAME RunTests COMMAND build/vscode-task-runner --task test --workspace ../tests --file task.json)
