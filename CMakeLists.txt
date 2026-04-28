@@ -32,4 +32,4 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 
 enable_testing()
 
-add_test(NAME RunTests COMMAND vscode-task-runner --task test --workspace ../tests --file task.json)
+add_test(NAME RunTests COMMAND vscode-task-runner --task Test --workspace ../tests --file task.json)
