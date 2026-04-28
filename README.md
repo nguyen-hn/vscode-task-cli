@@ -9,7 +9,7 @@ A command-line tool to run VScode tasks in ".vscode/task.json"
 
 ## 🚀 Usage
 ```bash
-vscode-task-cli --task build
+vscode-task-cli --task build --workspace tests --file task.json
 ```
 
 ## 📜 License
